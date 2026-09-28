@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap');
+
+:root { color: #ededed; background: #0a0a0a; font-family: Inter, sans-serif; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+button, input { font: inherit; }
+
+.app-shell { min-height: 100vh; padding: 30px max(24px, 7vw); overflow-x: hidden; background: #0a0a0a; }
+.nav { display: flex; align-items: center; justify-content: space-between; max-width: 1120px; margin: auto; color: #737373; font-size: 12px; }
+.brand { display: flex; align-items: center; gap: 9px; color: #f5f5f5; font-size: 14px; font-weight: 600; letter-spacing: -.02em; }
+.brand-mark { width: 8px; height: 8px; background: #3b82f6; }
+.nav-note { color: #525252; }
+.back-button { border: 0; color: #737373; background: transparent; font-size: 12px; cursor: pointer; }
+.back-button:hover { color: #f5f5f5; }
+
+.hero { width: min(900px, 100%); margin: clamp(90px, 19vh, 190px) auto 0; }
+.intro-quote { max-width: 900px; margin: 0 auto 52px; text-align: center; }
+.intro-quote h2 { margin: 0 0 16px; color: #f5f5f5; font-size: clamp(25px, 3.5vw, 42px); font-weight: 600; letter-spacing: -.05em; line-height: 1.15; }
+.intro-quote h4 { margin: 0; color: #8a8a8a; font-size: 14px; font-weight: 400; line-height: 1.7; }
+.eyebrow { margin-bottom: 22px; color: #3b82f6; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .16em; }
+h1 { margin: 0; color: #fafafa; font-size: clamp(38px, 6vw, 64px); font-weight: 600; letter-spacing: -.065em; line-height: 1.04; }
+.subtitle { margin: 24px 0 28px; color: #8a8a8a; font-size: 15px; }
+.shorten-form { display: flex; gap: 10px; }
+.shorten-form input { min-width: 0; flex: 1; padding: 17px 18px; border: 1px solid #292929; outline: none; border-radius: 5px; color: #f5f5f5; background: #111; font-size: 14px; transition: border-color .2s; }
+.shorten-form input:focus { border-color: #3b82f6; }
+.shorten-form input::placeholder { color: #555; }
+.shorten-form button { padding: 0 20px; border: 1px solid #3b82f6; border-radius: 5px; color: #fff; background: #3b82f6; font-size: 13px; font-weight: 600; white-space: nowrap; cursor: pointer; transition: background .2s; }
+.shorten-form button:hover { background: #2563eb; }
+.shorten-form button:disabled { cursor: wait; opacity: .65; }
+.error { margin: 14px 0 0; color: #f87171; font-size: 12px; }
+
+.result-card { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: 28px; padding: 17px 18px; border: 1px solid #252525; border-radius: 5px; background: #101010; animation: fade-in .35s ease both; }
+.result-label { display: block; margin-bottom: 8px; color: #666; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+.result-card a { color: #60a5fa; font-family: 'DM Mono', monospace; font-size: 13px; text-decoration: none; overflow-wrap: anywhere; }
+.result-page { min-height: 100vh; }
+.result-hero { width: min(680px, 100%); margin: clamp(140px, 23vh, 220px) auto 0; animation: fade-in .35s ease both; }
+.result-card--page { margin-top: 34px; }
+.copied-message { margin-top: 14px; color: #60a5fa; font-size: 12px; }
+.copy-button { display: grid; min-width: 36px; min-height: 36px; place-items: center; padding: 8px; border: 1px solid #333; border-radius: 4px; color: #aaa; background: transparent; font-size: 11px; cursor: pointer; }
+.copy-button:hover { border-color: #3b82f6; color: #fff; }
+.copy-button svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.5; }
+footer { max-width: 1120px; margin: 130px auto 0; color: #444; font-size: 11px; }
+@keyframes fade-in { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 600px) {
+  .app-shell { padding: 24px; }
+  .nav-note { display: none; }
+  .hero { margin-top: 90px; }
+  .intro-quote { text-align: left; }
+  .intro-quote h2 { font-size: 28px; white-space: normal; }
+  .shorten-form { flex-direction: column; }
+  .shorten-form button { min-height: 48px; }
+  footer { margin-top: 100px; }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .intro-quote h2 { font-size: clamp(25px, 4.5vw, 36px); }
+}
