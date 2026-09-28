@@ -25,3 +25,4 @@ Deploy the two folders as separate Render services:
 - Set `VITE_BACKEND_URL` to the deployed backend's full origin, such as `https://your-api.onrender.com`.
 
 Keep database credentials and connection URLs in Render's environment settings (or the ignored local `backend/.env`), never in committed source files.
+# url-shortener
