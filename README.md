@@ -1,12 +1,27 @@
 # URL Shortener
 
-## Configure PostgreSQL
+The repository is split into `frontend/` (React + Vite) and `backend/` (Spring Boot + Maven).
 
-Copy `.env.example` to `.env` and set `DB_USERNAME` and `DB_PASSWORD` to your PostgreSQL credentials. Set `DB_URL` too if your database is not at the default local address. `.env` is ignored by Git; keep real credentials there and never commit it.
+## Run locally
 
-Run the application from the project root with:
+1. Copy `backend/.env.example` to `backend/.env` and set `DB_USERNAME` and `DB_PASSWORD`. Set `DB_URL` if your PostgreSQL address differs from the local default.
+2. Start PostgreSQL and Redis.
+3. Run the backend from `backend/` with `./mvnw spring-boot:run`.
+4. In another terminal, run the frontend from `frontend/` with `npm install && npm run dev`.
 
-```sh
-./mvnw spring-boot:run
-```
-# url-shortener
+The Vite development server proxies `/api` requests to `http://localhost:8080`.
+
+## Deploy on Render
+
+Deploy the two folders as separate Render services:
+
+**Backend web service**
+- Choose **Docker** and set the Root Directory to `backend`.
+- Add `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`, and `REDIS_URL` as environment variables using your PostgreSQL and Redis provider's connection details. `DB_URL` must use JDBC format, for example `jdbc:postgresql://<host>:5432/<database>`.
+- Set `FRONTEND_URL` to the deployed frontend's full origin, such as `https://your-site.onrender.com`.
+
+**Frontend static site**
+- Set the Root Directory to `frontend`, Build Command to `npm install && npm run build`, and Publish Directory to `dist`.
+- Set `VITE_BACKEND_URL` to the deployed backend's full origin, such as `https://your-api.onrender.com`.
+
+Keep database credentials and connection URLs in Render's environment settings (or the ignored local `backend/.env`), never in committed source files.
