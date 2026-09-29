@@ -5,8 +5,10 @@ import com.URL.Shortener.url.Repo.UserRepo;
 import java.time.Duration;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class UrlService {
@@ -43,6 +45,9 @@ public class UrlService {
         }
 
         Url map = userRepo.findByShorturl(shortUrl);
+        if (map == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Short URL not found");
+        }
         String longUrl = map.getLongUrl();
         redisTemplate.opsForValue().set(shortUrl, longUrl, CACHE_TTL);
         return longUrl;
