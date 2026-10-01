@@ -17,6 +17,11 @@ public class UrlController {
     @Autowired
     private UrlService urlService;
 
+    @GetMapping("/test")
+    public String test() {
+        System.out.println("🔥 TEST ENDPOINT HIT");
+        return "GET endpoint is working";
+    }
 
     @PostMapping("/urlshortener")
     public String shortenerUrl(@RequestBody String longUrl){
@@ -25,7 +30,10 @@ public class UrlController {
 
     @GetMapping("/{shortUrl}")
     public ResponseEntity<Void> redirectToLongUrl(@PathVariable String shortUrl) {
-        URI destination = URI.create(urlService.redirectToLongUrl(shortUrl));
+        System.out.println("🔥 SHORT CODE RECEIVED: [" + shortUrl + "]");
+        String longUrl = urlService.redirectToLongUrl(shortUrl);
+        System.out.println("🔥 LONG URL FOUND: [" + longUrl + "]");
+        URI destination = URI.create(longUrl);
         return ResponseEntity.status(HttpStatus.FOUND)
                 .header(HttpHeaders.LOCATION, destination.toString())
                 .build();
