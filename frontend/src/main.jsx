@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 
-const BACKEND_URL = (import.meta.env.VITE_BACKEND_URL
-  ?? (import.meta.env.DEV ? 'https://url-shortener-nctz.onrender.com' : window.location.origin))
-  .replace(/\/$/, '');
-const API_URL = `${import.meta.env.VITE_BACKEND_URL ? BACKEND_URL : ''}/api/v1/urlshortener`;
+const BACKEND_URL = (
+  import.meta.env.VITE_BACKEND_URL ||
+  (import.meta.env.DEV
+    ? 'http://localhost:8080'
+    : 'https://url-project-v5.onrender.com')
+).replace(/\/$/, '');
+
+const API_URL = `${BACKEND_URL}/api/v1/urlshortener`;
 
 function CopyIcon() {
   return (
